@@ -1016,6 +1016,8 @@ process_loop(void)
 		continue;
 	    if (fds[n].revents & POLLERR) {
 		clients[n]->flags |= WAITING_CLOSE;
+		clients[n]->flags &= ~WAITING_READ;
+		clients[n]->flags &= ~WAITING_WRITE;
 		continue;
 	    }
 
